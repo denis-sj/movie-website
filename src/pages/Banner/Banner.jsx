@@ -6,10 +6,10 @@ import bg from "../../assets/bg-ape.jpeg";
 import MovieContent from "../../components/MovieContent/MovieContent";
 import MovieData from "../../components/MovieData/MovieData";
 import MoviePlayBtn from "../../components/MoviePlayBtn/MoviePlayBtn";
-
+import MovieSwiper from "../../components/MovieSwiper/MovieSwiper";
 
 function Banner() {
-  const [movie, setMovie] = useState([]);
+  const [movies, setMovie] = useState([]);
 
   const fetchData = () => {
     fetch("http://localhost:5173/data/movieData.json")
@@ -38,6 +38,7 @@ function Banner() {
           </div>
         </div>
       </div>
+      {movies && movies.length > 0 && <MovieSwiper slides = {movies}/>}
     </div>
   );
 }
