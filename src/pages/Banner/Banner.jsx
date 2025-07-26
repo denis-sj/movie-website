@@ -24,21 +24,30 @@ function Banner() {
 
   return (
     <div className="banner">
-      <div className="movie">
-        <img src={bg} alt="Background Image" className="bgImg active"></img>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-6 col-md-12">
-              <MovieContent />
+      {movies &&
+        movies.length > 0 &&
+        movies.map((movie) => {
+          <div className="movie">
+            <img
+              src={bgImg}
+              alt="Background Image"
+              className={`bgImg ${movie.active ? "active" : "undefined"}`}
+            ></img>
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-lg-6 col-md-12">
+                  <MovieContent movie={movie} />
+                </div>
+                <div className="col-lg-6 col-md-12">
+                  <MovieData movie={movie} />
+                  <MoviePlayBtn movie={movie} />
+                </div>
+              </div>
             </div>
-            <div className="col-lg-6 col-md-12">
-              <MovieData />
-              <MoviePlayBtn />
-            </div>
-          </div>
-        </div>
-      </div>
-      {movies && movies.length > 0 && <MovieSwiper slides = {movies}/>}
+          </div>;
+        })}
+
+      {movies && movies.length > 0 && <MovieSwiper slides={movies} />}
     </div>
   );
 }
